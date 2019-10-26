@@ -25,13 +25,4 @@ router.get('/sockets', (req, res) => {
   res.sendFile(_PATH('../tests/socket-test.html'));
 });
 
-// check file access
-router.get('/file/klanten', (req, res) => {
-  fs.readFile(_PATH('../tests/test-klanten.json'), (err, data) => {
-    if (err) throw err;
-    let response = JSON.parse(data);
-    res.json(response);
-  });
-});
-
 module.exports = router;
