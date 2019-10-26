@@ -23,6 +23,6 @@ certificates
 vue-client/dist/*
 
 # database file
-ticketpass.sqlite3*
+primary.sqlite3*
 
 #########################
