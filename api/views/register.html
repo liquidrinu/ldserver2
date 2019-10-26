@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>register</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="container">
+      <form id="containerBox" action="/account/register" method="post">
+        <div class="container">
+          <h3>register</h3>
+          <label for="uname">
+            <b>Username</b>
+          </label>
+          <input
+            id="userBox"
+            type="text"
+            placeholder="Enter Username"
+            name="username"
+            required
+          />
+
+          <label for="psw">
+            <b>Password</b>
+          </label>
+          <input
+            id="passwordBox"
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            required
+          />
+          <div id="button-container">
+            <button class="btn" type="submit">register</button>
+            <div class="btn">
+              <a id="back-button" href="/account"> back </a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

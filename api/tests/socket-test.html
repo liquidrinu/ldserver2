@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width"
+      content="user-scalable=no"
+      initial-scale="1.0"
+      maximum-scale="1"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>socket tester</title>
+    <link rel="manifest" href="manifest.json" />
+  </head>
+
+  <body>
+    <div id="output"></div>
+    <div id="msgBox">
+      <input
+        id="msg"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+      />
+      <button id="msgBtn" onclick="sendMsg()">Send</button>
+    </div>
+
+    <!-- Libraries -->
+    <script src="/socket.io/socket.io.js"></script>
+    <!-- scripts -->
+    <script>
+      const socket = io();
+
+      (() => {
+        socket.on("connect", () => {
+          console.log(socket.connection);
+          createHtml("CONNECTION: <b style='color: green;'>open</b>");
+        });
+        socket.on("disconnect", () => {
+          //fetch("/api/sockets/");
+          console.log(socket.connection);
+          createHtml("CONNECTION: <b style='color: red;'>closed</b>");
+        });
+        socket.on("server", msg => {
+          createHtml(msg);
+        });
+      })();
+
+      function createHtml(msg) {
+        let containerID = document.getElementById("output");
+        let el = document.createElement("p");
+        el.innerHTML = msg;
+        containerID.innerHTML = "";
+        containerID.appendChild(el);
+      }
+
+      function sendMsg() {
+        let el = document.getElementById("msg");
+        let msg = el.value;
+        socket.emit("test", msg);
+        document.getElementById("msg").value = "";
+      }
+
+      // events
+
+      (() => {
+        // message box enter button EVENT
+        let msgBox = document.getElementById("msgBox");
+        let msgBtn = document.getElementById("msgBtn");
+
+        // SET EVENT(S)
+        setEventEnterButton(msgBox, msgBtn);
+
+        function setEventEnterButton(containerID, buttonID) {
+          containerID.addEventListener("keyup", function(event) {
+            // 'Enter' button = 13
+            if (event.keyCode === 13) {
+              event.preventDefault();
+              buttonID.click();
+            }
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
