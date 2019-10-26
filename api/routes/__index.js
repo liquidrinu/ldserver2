@@ -23,7 +23,7 @@ function auth (req, res, next) {
 /*** BEGIN ROUTES *******************************************************/
 
 /**
- * @route [index]
+ * @route ['/']
  * @summary - this route serves the main (public) homepage
  */
 
