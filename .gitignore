@@ -1,0 +1,28 @@
+# IMPORTANT!
+#
+# , don't comment out!
+########################
+
+# sensitive
+env
+.env
+.config.js
+
+# various
+.vscode/
+node_modules
+gitty.sh
+primary.sqlite3.db
+package-lock.json
+flow.png
+
+# ssl certs
+certificates
+
+# built bundle (build your own!)
+vue-client/dist/*
+
+# database file
+ticketpass.sqlite3*
+
+#########################

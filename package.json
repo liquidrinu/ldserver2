@@ -1,0 +1,37 @@
+{
+  "name": "ldserver2",
+  "version": "2.0.1",
+  "description": "quick-to-deploy-api",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "export NODE_ENV=production",
+    "winserve": "set NODE_ENV=production&&node server.js",
+    "certs": "bash ./bin/certs.sh",
+    "dev": "'PORT=8888' node server.js"
+  },
+  "author": "liquidrinu",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "bluebird": "^3.5.5",
+    "cheerio": "^1.0.0-rc.3",
+    "connect-history-api-fallback": "^1.6.0",
+    "connect-redis": "^4.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-list-endpoints": "^4.0.1",
+    "express-rate-limit": "^5.0.0",
+    "express-session": "^1.16.2",
+    "helmet": "^3.21.0",
+    "ip": "^1.1.5",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "request-promise": "^4.2.4",
+    "socket.io": "^2.2.0",
+    "sqlite3": "^4.1.0"
+  }
+}
