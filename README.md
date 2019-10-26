@@ -39,8 +39,6 @@
 
 #### systems packages
 
-`this is for debian, change to fit your OS`
-
 - clone repo
 - change '.env-example' into '.env'
 - update .env file and replace all values with own 'complex' strings
