@@ -43,15 +43,17 @@ router.post('/login', passport.authenticate('local'), (req, res) => {
     expiresIn: '2h',
   });
 
-  if (req.body.redirect !== 'true') {
-    res.status(200).json({
-      success: true,
-      message: 'Authentication successful!',
-      token: token,
-    });
-  } else {
-    res.redirect(302, '/');
-  }
+  res.redirect('/');
+
+  //if (req.body.redirect !== 'true') {
+  //  res.status(200).json({
+  //    success: true,
+  //    message: 'Authentication successful!',
+  //    token: token,
+  //  });
+  //} else {
+  //  res.redirect(302, '/');
+  //}
 });
 
 /**
