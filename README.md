@@ -52,7 +52,7 @@ cd ./api/utils
 node genKey.js
 ```
 
-#### init 
+#### init (do these from root directory of repo)
 ```bash
 npm run certs
 npm install --save
