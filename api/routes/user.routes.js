@@ -71,8 +71,6 @@ router.post('/register', allowRegister, (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
 
-  console.log(req.body);
-
   User.getByUserName(username).then(() => {
     User.generatePassword(password).then(password => {
       User.register({ username, password })
