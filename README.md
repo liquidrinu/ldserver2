@@ -40,7 +40,7 @@
 - change '.env-example' into '.env'
 - update .env file and replace all values with own 'complex' strings
 
-#### you can use this to generate keys
+##### you can use this to generate keys
 
 ```bash
 cd ./api/utils
@@ -76,7 +76,7 @@ visit http(s)://[localhost]:[port]/
 npm install pm2 -g
 ```
 
-..then inside baseServer's root directory
+..then inside ldserver2's root directory
 
 ```bash
 pm2 start server.js --name 'helloWorld'
