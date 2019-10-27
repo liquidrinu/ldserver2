@@ -12,8 +12,7 @@ env
 .vscode/
 node_modules
 gitty.sh
-primary.sqlite3.db
-*sqlite3.db
+
 package-lock.json
 flow.png
 
@@ -25,5 +24,6 @@ vue-client/dist/*
 
 # database file
 primary.sqlite3*
-
+primary.sqlite3.db
+*sqlite3.db
 #########################
