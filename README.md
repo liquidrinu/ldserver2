@@ -15,13 +15,11 @@
 #### required:
 
 - npm + nodejs runtime
-
-#### optional:
-
 - openssl
 - tree
 - pm2
 - sqlite3
+- bcrypt
 
 #### nodejs dependencies:
 
@@ -29,7 +27,6 @@
 - `Helmet` secure http headers
 - `Bodyparser` parse incoming data and make it available under `req.body` property
 - `ip` IP address utilities for node.js
-- `Mongoose` ORM driver
 - `Passport*` Authentication modules
 - `Express-session` carry session throughout client connection
 
