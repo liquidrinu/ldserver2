@@ -16,7 +16,7 @@ const router = express.Router();
  */
 
 function auth (req, res, next) {
-    if (req.user) return next();
+    if (req.username) return next();
     res.redirect('/account/login');
 }
 

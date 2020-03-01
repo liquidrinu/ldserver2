@@ -4,15 +4,15 @@ class UserModel {
   }
 
   createTable () {
-    const sql = `
+    const mysql = `
           CREATE TABLE IF NOT EXISTS users (
-              id          INTEGER     PRIMARY KEY      AUTOINCREMENT,
-              username    TEXT        UNIQUE           NOT NULL     ,
-              password    TEXT                         NOT NULL     ,
-              alias       TEXT                         NOT NULL     ,
-              type        TEXT        DEFAULT ('USER') NOT NULL
+              id          INTEGER         PRIMARY KEY      AUTO_INCREMENT,
+              username    VARCHAR(100)    UNIQUE           NOT NULL     ,
+              password    VARCHAR(100)                     NOT NULL     ,
+              alias       VARCHAR(100)                     NOT NULL     ,
+              type        VARCHAR(100)    DEFAULT 'USER'   NOT NULL
           )`;
-    return this.dao.all(sql);
+    return this.dao.all(mysql);
   }
 
   // CRUD

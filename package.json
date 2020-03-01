@@ -8,12 +8,14 @@
     "start": "export NODE_ENV=production",
     "winserve": "set NODE_ENV=production&&node server.js",
     "certs": "bash ./bin/certs.sh",
-    "dev": "'PORT=8888' node server.js"
+    "dev": "'PORT=8888' node server.js",
+    "token": "node ./api/utils/createRegistrationToken.js"
   },
   "author": "liquidrinu",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^3.0.6",
+    "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.5",
     "cheerio": "^1.0.0-rc.3",
     "connect-history-api-fallback": "^1.6.0",
@@ -27,7 +29,9 @@
     "helmet": "^3.21.0",
     "ip": "^1.1.5",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^0.20.10",
     "moment": "^2.24.0",
+    "mysql": "^2.18.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "request-promise": "^4.2.4",

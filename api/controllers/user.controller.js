@@ -1,13 +1,13 @@
 // Dependencies
-const Promise = require('bluebird');
-const bcrypt = require('bcrypt');
+const Promise = require("bluebird");
+const bcrypt = require("bcryptjs");
 
 // DAO
-const AppDAO = require('../dao');
+const AppDAO = require("../dao");
 const dao = new AppDAO();
 
 // Models
-const UserModel = require('../models/user.model');
+const UserModel = require("../models/user.model");
 const User = new UserModel(dao);
 
 ///////////////////////////////////////
@@ -19,14 +19,14 @@ module.exports = {
   getById: id => {
     return new Promise((resolve, reject) => {
       resolve(User.getById());
-      reject('Error fetching user by id!');
+      reject("Error fetching user by id!");
     });
   },
 
   getByUserName: username => {
     return new Promise((resolve, reject) => {
       resolve(User.getByUsername(username));
-      reject('Error finding user');
+      reject("Error finding user");
     });
   },
 
@@ -37,23 +37,21 @@ module.exports = {
   register: data => {
     return new Promise((resolve, reject) => {
       resolve(User.insertUser(data));
-      reject('error');
+      reject("error");
     });
   },
 
   verifyPassword: (username, password) => {
     return new Promise((resolve, reject) => {
       User.getByUsername(username).then(user => {
-        if (!user) reject();
-      });
-
-      User.getHash(username).then(hash => {
-        bcrypt.compare(password, hash.password, (err, res) => {
-          if (err || !res) reject(err);
-          resolve(username);
+        User.getHash(username).then(hash => {
+          bcrypt.compare(password, hash[0].password, (err, res) => {
+            if (err || !res) reject("Wrong user or password");
+            resolve(username);
+          });
         });
       });
-    });
+    }).catch(err => console.log("Unauthorized user"));
   },
 
   generatePassword: password => {
@@ -68,4 +66,5 @@ module.exports = {
       });
     });
   },
+
 };

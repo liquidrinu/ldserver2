@@ -1,30 +1,44 @@
-const sqlite3 = require("sqlite3");
+const mysql = require("mysql");
 const Promise = require("bluebird");
 const path = require("path");
 
-// Data Access Object
+/**
+ * @class AppDAO
+ * Regulate transactions between the `models` and the database
+ *
+ * @issue unable to load .env file for some reason
+ * hence load config through `require`
+ *
+ * @example
+ * module.exports = {
+ *    host: "localhost",
+ *    port: 3306,
+ *    etc...
+ * }
+ *
+ * @property {String} host,
+ * @property {String} user,
+ * @property {String} password,
+ * @property {String} database,
+ * @property {Number} port
+ */
+
 class AppDAO {
+
   constructor() {
-    const dbFilePath = "./primary.sqlite3.db";
-    this.db = new sqlite3.Database(dbFilePath, err => {
-      if (err) {
-        console.log(`Could not connect to database", ${err}`);
-      } else {
-        console.log(`Connected to database: ${dbFilePath}`);
-      }
-    });
+    const DB_CREDENTIALS = require("./.db_credentials");
+    this.db = mysql.createConnection(DB_CREDENTIALS);
+    this.db.connect();
   }
 
-  // Queries
   run (sql, params = []) {
     return new Promise((resolve, reject) => {
-      this.db.run(sql, params, (err) => {
-        if (err) {
+      this.db.query(sql, params, (error, results, fields) => {
+        if (error) {
           console.log(`Error with db query : ${sql}`);
-          console.log(err);
-          reject(err);
+          reject(error);
         } else {
-          resolve({ id: this.lastID });
+          resolve({ id: results.insertId });
         }
       });
     });
@@ -32,13 +46,12 @@ class AppDAO {
 
   get (sql, params = []) {
     return new Promise((resolve, reject) => {
-      this.db.get(sql, params, (err, result) => {
-        if (err) {
-          console.log("Error running sql: " + sql);
-          console.log(err);
-          reject(err);
+      this.db.query(sql, params, (error, results, fields) => {
+        if (error) {
+          console.log(`Error with db query : ${sql}`);
+          reject(error);
         } else {
-          resolve(result);
+          resolve(results);
         }
       });
     });
@@ -46,13 +59,12 @@ class AppDAO {
 
   all (sql, params = []) {
     return new Promise((resolve, reject) => {
-      this.db.all(sql, params, (err, rows) => {
-        if (err) {
-          console.log("Error running sql: " + sql);
-          console.log(err);
-          reject(err);
+      this.db.query(sql, params, (error, results, fields) => {
+        if (error) {
+          console.log(`Error with db query : ${sql}`);
+          reject(error);
         } else {
-          resolve(rows);
+          resolve(results);
         }
       });
     });

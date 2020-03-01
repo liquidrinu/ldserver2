@@ -45,16 +45,21 @@ app.use(
 
 // passport.js
 app.use(session(_CONFIG.session));
-app.use(passport.initialize());
+app.use(
+  passport.initialize({
+    userProperty: "username" // defaults to 'user' if omitted
+  })
+);
 app.use(passport.session());
 
-passport.serializeUser((user, done) => {
-  done(null, user);
+passport.serializeUser((username, done) => {
+  done(null, username);
 });
 
-passport.deserializeUser((user, done) => {
-  done(null, user);
+passport.deserializeUser((username, done) => {
+  done(null, username);
 });
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 
