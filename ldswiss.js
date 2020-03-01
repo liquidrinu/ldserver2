@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require("fs");
 
 module.exports = {
     ////////////////////////
@@ -15,9 +15,36 @@ module.exports = {
      */
 
     strPad: (str, begin, end, char1, char2) =>
-        typeof char2 !== 'string'
-            ? [...Array(begin), str, ...Array(end || 0)].join(char1 || ' ')
-            : [...Array(begin + 1).join(char1), str, Array(end + 1).join(char2 || char1)].join(''),
+        typeof char2 !== "string"
+            ? [...Array(begin), str, ...Array(end || 0)].join(char1 || " ")
+            : [
+                ...Array(begin + 1).join(char1),
+                str,
+                Array(end + 1).join(char2 || char1)
+            ].join(""),
+
+    /**
+     * @method alphaSort
+     * Sort objects alphabetically based on value by selected prop
+     *
+     * @param {object} obj    - the string that needs padding
+     * @param {string} prop   - the prop name to sort on
+     */
+
+    alphaSort: (obj, prop, type = "string") =>
+        obj.sort((a, b) => {
+            let x;
+            let y;
+
+            if (type === "string") {
+                x = a[prop].toUpperCase();
+                y = b[prop].toUpperCase();
+            } else if (type === "int") {
+                x = a[prop];
+                y = b[prop];
+            }
+            return x < y ? -1 : x > y ? 1 : 0;
+        }),
 
     //////////////////////
     //  JSON functions  //
@@ -48,7 +75,7 @@ module.exports = {
      * @returns {object}       - JSON object
      */
 
-    jsonFsRead: (path) => {
+    jsonFsRead: path => {
         return new Promise((resolve, reject) => {
             fs.readFile(path, "utf8", function (err, data) {
                 if (err) throw err;
@@ -60,7 +87,7 @@ module.exports = {
 
     mergeById: (newData, oldData, key) =>
         newData.map(itm => ({
-            ...oldData.find((item) => (item[key] === itm[key]) && item),
+            ...oldData.find(item => item[key] === itm[key] && item),
             ...itm
         }))
 };

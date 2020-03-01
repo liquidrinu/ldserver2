@@ -23,7 +23,5 @@ certificates
 vue-client/dist/*
 
 # database file
-primary.sqlite3*
-primary.sqlite3.db
-*sqlite3.db
+.db_credentials.js
 #########################

@@ -1,0 +1,6 @@
+
+knex migrate:make my_migration
+knex migrate:latest
+
+knex seed:make 01_my_seed
+knex seed:run

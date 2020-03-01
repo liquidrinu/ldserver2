@@ -12,11 +12,12 @@ const dotenv = require('dotenv').config({
 
 const http = require('http');
 const https = require('https');
+const ip = require("ip");
 const fs = require('fs');
 
 //  [ HOST, PORT ]
-const HOST = 'localhost';
-const PORT = process.env.PORT || 443;
+const HOST = ip.address();
+const PORT = process.env.PORT || 443 || 80;
 
 //  [ EXPRESS ]
 const express = require('express');
