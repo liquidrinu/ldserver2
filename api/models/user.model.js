@@ -4,15 +4,16 @@ class UserModel {
   }
 
   createTable () {
-    const mysql = `
+    const sql = `
           CREATE TABLE IF NOT EXISTS users (
               id          INTEGER         PRIMARY KEY      AUTO_INCREMENT,
-              username    VARCHAR(100)    UNIQUE           NOT NULL     ,
-              password    VARCHAR(100)                     NOT NULL     ,
-              alias       VARCHAR(100)                     NOT NULL     ,
-              role        INTEGER
+              username    VARCHAR(255)    UNIQUE           NOT NULL     ,
+              password    VARCHAR(255)                     NOT NULL     ,
+              alias       VARCHAR(255)                     NOT NULL     ,
+              role        INTEGER                                       ,
+              uuid        VARCHAR(36)
           )`;
-    return this.dao.all(mysql);
+    return this.dao.all(sql);
   }
 
   // CRUD
@@ -25,7 +26,7 @@ class UserModel {
         data.username,
         data.password,
         data.alias || data.username,
-        data.role || null
+        data.role || 4
       ]
     );
   }
@@ -44,7 +45,11 @@ class UserModel {
   }
 
   getById (id) {
-    return this.dao.all(`SELECT id, username FROM users WHERE id = ?`, [id]);
+    return this.dao.all(`SELECT id, username, role FROM users WHERE id = ?`, [id]);
+  }
+
+  getByUuid (uuid) {
+    return this.dao.all(`SELECT id, username, role FROM users WHERE uuid = ?`, [uuid]);
   }
 
   deleteById (id) {
@@ -52,7 +57,7 @@ class UserModel {
   }
 
   getByUsername (username) {
-    return this.dao.get(`SELECT username, id FROM users WHERE username = ?`, [
+    return this.dao.get(`SELECT id, username, role FROM users WHERE username = ?`, [
       username
     ]);
   }
@@ -65,7 +70,7 @@ class UserModel {
     return this.dao.run(`UPDATE users SET alias = ? WHERE id = ?`, [alias, id]);
   }
 
-  updaterole (id, role) {
+  updateRole (id, role) {
     return this.dao.run(`UPDATE users SET role = ? WHERE id = ?`, [role, id]);
   }
 

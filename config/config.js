@@ -1,5 +1,3 @@
-
-
 module.exports = {
   jwt: {
     secret: process.env.JWT_SECRET
@@ -26,6 +24,12 @@ module.exports = {
     resave: false,
     saveUninitialized: false
   },
+  mysql: {
+    host: process.env.DB_HOST,
+    user: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+  },
   knex: {
     client: process.env.DB_CLIENT,
     connection: {
@@ -34,8 +38,10 @@ module.exports = {
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME
     },
+    pool: { min: 0, max: 7 },
     migrations: {
-      tableName: process.env.DB_MIGRATIONS_TABLE
-    }
+      directory: "./data/migrations"
+    },
+    seeds: { directory: "./data/seeds" }
   }
 };

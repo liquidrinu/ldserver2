@@ -7,8 +7,8 @@ class RolesModel {
     const sql = `
           CREATE TABLE IF NOT EXISTS roles (
               id                INTEGER       PRIMARY KEY   AUTO_INCREMENT,
-              role              VARCHAR(100)                NOT NULL      ,
-              type              VARCHAR(100)                NOT NULL
+              role              VARCHAR(255)                NOT NULL      ,
+              type              VARCHAR(255)
           )`;
     return this.dao.run(sql);
   }

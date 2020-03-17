@@ -13,6 +13,7 @@ const session = require('express-session');
 const RedisStore = require('connect-redis')(session);
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
+const knex = require('knex')(_CONFIG.knex);
 
 // framework
 const app = express();
@@ -24,6 +25,15 @@ const app = express();
 //    maxAge: 5184000
 //  })
 //);
+
+// knex **under construction**
+//knex.migrate.latest()
+//  .then(() => {
+//    return knex.seed.run();
+//  })
+//  .then(() => {
+//    console.log('knex ran succesfully!');
+//  });
 
 // bodyparser
 app.use(bodyParser.json());
@@ -59,6 +69,8 @@ passport.serializeUser((username, done) => {
 passport.deserializeUser((username, done) => {
   done(null, username);
 });
+
+console.log(_CONFIG);
 
 
 ///////////////////////////////////////////////////////////////////////////////////

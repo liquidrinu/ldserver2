@@ -5,7 +5,7 @@ const args = process.argv.slice(2);
 
 const username = args[0];
 const password = args[1];
-const type = args[2] || "USER";
+const type = args[2] || "CLI_CREATED";
 
 // Wrapper with `path`
 let _PATH = filePath => {
@@ -13,13 +13,12 @@ let _PATH = filePath => {
 };
 
 (() => {
-  Promise.all([username, password, type])
+  Promise.all([username, password])
     .then(args => {
       let data = {
         username: args[0],
         password: args[1],
-        alias: args[0],
-        type: args[2]
+        alias: args[0]
       };
       return data;
     })
@@ -31,8 +30,7 @@ let _PATH = filePath => {
             .register({
               username: data.username,
               password: hash,
-              alias: data.username,
-              type: data.type
+              alias: data.username
             })
             .then(id => {
               console.log(`Registration succesfull!`);

@@ -1,6 +1,9 @@
 const mysql = require("mysql");
 const Promise = require("bluebird");
 const path = require("path");
+const dotenv = require('dotenv').config({
+  path: path.resolve(__dirname + '../../.env'),
+});
 
 /**
  * @class AppDAO
@@ -23,11 +26,15 @@ const path = require("path");
  * @property {Number} port
  */
 
+
+const _CONFIG = require('../config/config.js');
+
 class AppDAO {
 
   constructor() {
     const DB_CREDENTIALS = require("./.db_credentials");
-    this.db = mysql.createConnection(DB_CREDENTIALS);
+    console.log(_CONFIG.mysql);
+    this.db = mysql.createConnection(_CONFIG.mysql);
     this.db.connect();
   }
 

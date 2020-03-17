@@ -2,6 +2,9 @@
 const Promise = require("bluebird");
 const bcrypt = require("bcryptjs");
 
+// imports
+const { v1: uuidv1 } = require('uuid');
+
 // DAO
 const AppDAO = require("../dao");
 const dao = new AppDAO();
@@ -16,6 +19,13 @@ module.exports = {
     return User.createTable();
   },
 
+  generateKeyV1: () => {
+    return new Promise((resolve, reject) => {
+      resolve(uuidv1());
+      reject("Error generating UUID");
+    });
+  },
+
   getById: id => {
     return new Promise((resolve, reject) => {
       resolve(User.getById());
@@ -26,7 +36,14 @@ module.exports = {
   getByUserName: username => {
     return new Promise((resolve, reject) => {
       resolve(User.getByUsername(username));
-      reject("Error finding user");
+      reject("Error finding user!");
+    });
+  },
+
+  getByUuid: id => {
+    return new Promise((resolve, reject) => {
+      resolve(User.getByUuid());
+      reject("Error fetching user by UUID!");
     });
   },
 
@@ -37,7 +54,7 @@ module.exports = {
   register: data => {
     return new Promise((resolve, reject) => {
       resolve(User.insertUser(data));
-      reject("error");
+      reject("Error inserting user in database");
     });
   },
 

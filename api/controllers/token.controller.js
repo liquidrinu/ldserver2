@@ -30,7 +30,7 @@ module.exports = {
 
   storeToken: (user, token, type) => {
     let _TOKEN = {
-      insertion_date: moment().unix(),
+      insertion_date: moment().format("YYYY-MM-DD HH:mm:ss"),
       user_id: 0,
       username: user,
       token: token,
@@ -45,7 +45,7 @@ module.exports = {
         let data = {
           user_id: -1000, // yes yes very ugly deal with it or fix it
           username: _USERNAME || "admin",
-          insertion_date: moment().unix(),
+          insertion_date: moment().format("YYYY-MM-DD HH:mm:ss"),
           token: _TOKEN || process.env.REGISTRATION_KEY,
           type: "REGISTRATION"
         };

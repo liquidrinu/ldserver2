@@ -5,13 +5,13 @@ class TokenModel {
 
   createTable () {
     const sql = `
-          CREATE TABLE IF NOT EXISTS tokens (
+          CREATE TABLE IF NZOT EXISTS tokens (
               id                INTEGER       PRIMARY KEY   AUTO_INCREMENT,
               user_id           INTEGER                                   ,
               username          VARCHAR(255)                NOT NULL      ,
-              insertion_date    INTEGER                     NOT NULL      ,
+              insertion_date    VARCHAR(255)                NOT NULL      ,
               token             VARCHAR(255)                NOT NULL      ,
-              type              VARCHAR(100)                NOT NULL
+              type              VARCHAR(255)                NOT NULL
           )`;
     return this.dao.run(sql);
   }
