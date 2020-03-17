@@ -1,4 +1,4 @@
-exports = module.exports = function(io) {
+exports = module.exports = function (io) {
   // client control messages
   io.on('connection', socket => {
     socket.on('test', msg => {
@@ -6,8 +6,8 @@ exports = module.exports = function(io) {
       socket.emit(
         'server',
         `<b style="color: red;">[ server ]</b><b> If you wrote.. </b>
-                 <p style="padding: 4px 12px; ; color: black;">${msg}</p>
-                 <b> .. then the socket connection is <b style="color: green;"> [ OK ]</b>`
+         <p style="padding: 4px 12px; ; color: black;">${msg}</p>
+         <b> .. then the socket connection is <b style="color: green;"> [ OK ]</b>`
       );
     });
   });

@@ -10,7 +10,7 @@ class UserModel {
               username    VARCHAR(100)    UNIQUE           NOT NULL     ,
               password    VARCHAR(100)                     NOT NULL     ,
               alias       VARCHAR(100)                     NOT NULL     ,
-              type        VARCHAR(100)    DEFAULT 'USER'   NOT NULL
+              role        INTEGER
           )`;
     return this.dao.all(mysql);
   }
@@ -18,14 +18,14 @@ class UserModel {
   // CRUD
   insertUser (data) {
     return this.dao.run(
-      `INSERT INTO users ( id, username, password, alias, type )
+      `INSERT INTO users ( id, username, password, alias, role )
         VALUES (?, ?, ?, ?, ?)`,
       [
         data.id,
         data.username,
         data.password,
         data.alias || data.username,
-        data.type || "USER"
+        data.role || null
       ]
     );
   }
@@ -57,16 +57,16 @@ class UserModel {
     ]);
   }
 
-  getByType (type) {
-    return this.dao.all(`SELECT * FROM users WHERE type = ?`, [type]);
+  getByrole (role) {
+    return this.dao.all(`SELECT * FROM users WHERE role = ?`, [role]);
   }
 
   updateAlias (id, alias) {
     return this.dao.run(`UPDATE users SET alias = ? WHERE id = ?`, [alias, id]);
   }
 
-  updateType (id, type) {
-    return this.dao.run(`UPDATE users SET type = ? WHERE id = ?`, [type, id]);
+  updaterole (id, role) {
+    return this.dao.run(`UPDATE users SET role = ? WHERE id = ?`, [role, id]);
   }
 
   getAll () {

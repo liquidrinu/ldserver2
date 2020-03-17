@@ -1,6 +1,6 @@
 //grab local ip
 
-module.exports = exports = function() {
+module.exports = exports = function () {
   var sys = require("util");
   var exec = require("child_process").exec;
 

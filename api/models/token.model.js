@@ -3,12 +3,12 @@ class TokenModel {
     this.dao = dao;
   }
 
-  createTable() {
+  createTable () {
     const sql = `
           CREATE TABLE IF NOT EXISTS tokens (
               id                INTEGER       PRIMARY KEY   AUTO_INCREMENT,
               user_id           INTEGER                                   ,
-              username          varchar(255)                NOT NULL      ,
+              username          VARCHAR(255)                NOT NULL      ,
               insertion_date    INTEGER                     NOT NULL      ,
               token             VARCHAR(255)                NOT NULL      ,
               type              VARCHAR(100)                NOT NULL
@@ -17,7 +17,7 @@ class TokenModel {
   }
 
   // CRUD
-  insertToken(data) {
+  insertToken (data) {
     return this.dao.run(
       `INSERT INTO tokens ( id, user_id, username, insertion_date, token, type )
         VALUES (?, ?, ?, ?, ?, ?)`,
@@ -32,31 +32,31 @@ class TokenModel {
     );
   }
 
-  getById(id) {
+  getById (id) {
     return this.dao.all(`SELECT * FROM tokens WHERE id = ?`, [id]);
   }
 
-  getByUsername(username) {
+  getByUsername (username) {
     return this.dao.all(`SELECT * FROM tokens WHERE username = ?`, [username]);
   }
 
-  deleteById(id) {
+  deleteById (id) {
     return this.dao.run(`DELETE FROM tokens WHERE id = ?`, [id]);
   }
 
-  deleteByUsername(username) {
+  deleteByUsername (username) {
     return this.dao.run(`DELETE FROM tokens WHERE username = ?`, [username]);
   }
 
-  getByToken(token) {
+  getByToken (token) {
     return this.dao.all(`SELECT * FROM tokens where token = ?`, [token]);
   }
 
-  getByType(type) {
+  getByType (type) {
     return this.dao.all(`SELECT * FROM tokens WHERE type = ?`, [type]);
   }
 
-  exists(token) {
+  exists (token) {
     return this.dao.run(
       `SELECT EXISTS(SELECT 1 FROM TOKENS WHERE token = ? LIMIT 1)`,
       [token]

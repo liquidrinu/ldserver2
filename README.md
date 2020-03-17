@@ -63,9 +63,6 @@ visit http(s)://[localhost]:[port]/
 
 ---
 
-##### dont change 'primary.sqlite3.db'
-##### check out database through GUI with this software https://github.com/sqlitebrowser/sqlitebrowser
-
 ---
 
 ## Daemonize Server
