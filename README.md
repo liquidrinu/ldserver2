@@ -23,12 +23,21 @@
 
 #### nodejs dependencies:
 
-- `Express` webserver framework for node.js
-- `Helmet` secure http headers
+- `Bcrypt(js)` Encryption
+- `Bluebird` Promise library
 - `Bodyparser` parse incoming data and make it available under `req.body` property
-- `ip` IP address utilities for node.js
-- `Passport*` Authentication modules
+- `Cheerio` Webscraper
+- `Connect-history-api-fallback` module to route vue correctly with api
+- `Express` webserver framework for node.js
 - `Express-session` carry session throughout client connection
+- `Helmet` secure http headers
+- `ip` IP address utilities for node.js
+- `Knex` Migration and seeding module
+- `Moment` tried and tested date-time library
+- `Mysql` SQL driver
+- `Passport*` Authentication modules
+- `Socketio` websockets module
+- `UUID` create UUID according to specifications
 
 ---
 
